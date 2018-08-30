@@ -1,43 +1,47 @@
 <template>
   <transition name="slide">
-    <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
+    <music-list :rank="rank" :title="title" :bg-image="bgImage" :songs="songs"></music-list>
   </transition>
 </template>
 
 <script>
+import MusicList from 'components/music-list/music-list'
 import { mapGetters } from 'vuex'
-import { getSingerDetail } from 'api/singer'
+import { getMusicList } from 'api/rank'
 import { ERR_OK } from 'api/config'
 import { createSong, processSongsUrl } from 'common/js/song'
-import MusicList from 'components/music-list/music-list'
 
 export default {
   data() {
     return {
-      songs: []
+      songs: [],
+      rank: true
     }
   },
   computed: {
     title() {
-      return this.singer.name
+      return this.topList.topTitle
     },
     bgImage() {
-      return this.singer.avatar
+      if (this.songs.length) {
+        return this.songs[0].image
+      }
+      return ''
     },
-    ...mapGetters(['singer'])
+    ...mapGetters(['topList'])
   },
   created() {
-    this._getDetail()
+    this._getMusicList()
   },
   methods: {
-    _getDetail() {
-      if (!this.singer.id) {
-        this.$router.push('/singer')
+    _getMusicList() {
+      if (!this.topList.id) {
+        this.$router.push('/rank')
         return
       }
-      getSingerDetail(this.singer.id).then(res => {
+      getMusicList(this.topList.id).then(res => {
         if (res.code === ERR_OK) {
-          processSongsUrl(this._normalizeSongs(res.data.list)).then(songs => {
+          processSongsUrl(this._normalizeSongs(res.songlist)).then(songs => {
             this.songs = songs
           })
         }
@@ -46,8 +50,8 @@ export default {
     _normalizeSongs(list) {
       let ret = []
       list.forEach(item => {
-        let { musicData } = item
-        if (musicData.songid && musicData.albummid) {
+        const musicData = item.data
+        if (musicData.songid && musicData.albumid) {
           ret.push(createSong(musicData))
         }
       })
@@ -62,7 +66,7 @@ export default {
 
 <style lang="stylus">
 .slide-enter-active, .slide-leave-active
-  transition: all 0.3s
+  transition: all 0.3s ease
 .slide-enter, .slide-leave-to
   transform: translate3d(100%, 0, 0)
 </style>
