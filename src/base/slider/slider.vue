@@ -119,7 +119,7 @@ export default {
 <style lang="stylus">
 @import '~common/stylus/variable'
 .slider
-  min-height: 1
+  min-height: 1px
   .slider-group
     position: relative
     overflow: hidden
