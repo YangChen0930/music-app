@@ -9,7 +9,12 @@
           <div class="hot-key">
             <h1 class="title">热门搜索</h1>
             <ul>
-              <li @click="addQuery(item.k)" class="item" v-for="(item, index) in hotKey" :key="index">
+              <li
+                @click="addQuery(item.k)"
+                class="item"
+                v-for="(item, index) in hotKey"
+                :key="index"
+              >
                 <span>{{item.k}}</span>
               </li>
             </ul>
@@ -79,9 +84,7 @@ export default {
         }
       })
     },
-    ...mapActions([
-      'clearSearchHistory'
-    ])
+    ...mapActions(['clearSearchHistory'])
   },
   watch: {
     query(newQuery) {
@@ -127,7 +130,7 @@ export default {
           padding: 5px 10px
           margin: 0 20px 10px 0
           border-radius: 6px
-          background: $color-highlight-background
+          border: 1px solid #d3d4da
           font-size: $font-size-medium
           color: $color-text-d
       .search-history
