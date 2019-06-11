@@ -155,7 +155,7 @@ export default {
     left 0
     bottom 0
     width 100%
-    background-color $color-highlight-background
+    background-color $color-background
     .list-header
       position relative
       padding 20px 30px 10px 20px
@@ -169,7 +169,7 @@ export default {
         .text
           flex 1
           font-size $font-size-medium
-          color $color-text-l
+          color $color-text-ll
         .clear
           extend-click()
           .icon-clear
@@ -197,7 +197,7 @@ export default {
           flex 1
           no-wrap()
           font-size $font-size-medium
-          color $color-text-d
+          color $color-text-l
         .like
           extend-click()
           margin-right 15px

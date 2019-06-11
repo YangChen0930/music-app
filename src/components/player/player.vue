@@ -555,11 +555,11 @@ export default {
           width: 8px
           height: 8px
           border-radius: 50%
-          background: $color-text-l
+          background: $color-sub-text-l
           &.active
             width: 20px
             border-radius: 5px
-            background: $color-text-ll
+            background: $color-sub-text-ll
       .progress-wrapper
         display: flex
         align-items: center
@@ -618,7 +618,8 @@ export default {
     z-index: 180
     width: 100%
     height: 60px
-    background: $color-highlight-background
+    background: $color-background
+    border-top:1px solid $color-highlight-background
     &.mini-enter-active, &.mini-leave-active
       transition: all 0.4s
     &.min-enter, &.mini-leave-to

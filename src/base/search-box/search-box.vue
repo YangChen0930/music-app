@@ -52,12 +52,12 @@ export default {
   border-radius: 6px
   .icon-search
     font-size: 24px
-    color: $color-background
+    color: $color-text-d
   .box
     flex: 1
     margin: 0 5px
     line-height: 18px
-    background: $color-highlight-background
+    background: transparent
     color: $color-text
     font-size: $font-size-medium
     &::placeholder

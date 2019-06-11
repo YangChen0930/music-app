@@ -100,7 +100,7 @@ export default {
         padding: 0 20px
         height: 100px
         overflow: hidden
-        background: $color-highlight-background
+        // background: $color-highlight-background
         color: $color-text-d
         font-size: $font-size-small
         .song
